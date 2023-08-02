@@ -5,28 +5,33 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Salesman extends Model
+class Sale extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'salesman_id',
         'client_id',
-        'email',
-        'born_date',
+        'branch_id',
+        'total',
     ];
 
     /**
      * Eloquent Relationships
      */
+    public function salesman(): BelongsTo
+    {
+        return $this->belongsTo(Salesman::class);
+    }
+
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
     }
 
-    public function sales() : HasMany
+    public function branch(): BelongsTo
     {
-        return $this->hasMany(Sale::class);
+        return $this->belongsTo(Branch::class);
     }
 }
