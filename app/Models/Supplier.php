@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Supplier extends Model
 {
@@ -19,4 +20,12 @@ class Supplier extends Model
         'phone',
         'webpage',
     ];
+
+    /**
+     * Eloquent Relationships
+     */
+    public function products(): HasMany
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
