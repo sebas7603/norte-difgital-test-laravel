@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Client extends Model
 {
@@ -19,4 +20,12 @@ class Client extends Model
         'address_city',
         'phone',
     ];
+
+    /**
+     * Eloquent Relationships
+     */
+    public function salesman(): HasOne
+    {
+        return $this->hasOne(Salesman::class);
+    }
 }
