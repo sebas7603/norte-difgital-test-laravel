@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Branch extends Model
 {
@@ -14,4 +15,12 @@ class Branch extends Model
         'money_code',
         'money_symbol',
     ];
+
+    /**
+     * Eloquent Relationships
+     */
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class)->withPivot('stock', 'price');
+    }
 }
