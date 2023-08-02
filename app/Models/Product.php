@@ -28,4 +28,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Branch::class)->withPivot('stock', 'price');
     }
+
+    public function sales(): BelongsToMany
+    {
+        return $this->belongsToMany(Sale::class, 'sales_items')->withPivot('price', 'quantity', 'subtotal');
+    }
 }
