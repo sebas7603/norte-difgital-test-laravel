@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('salesmen', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('client_id')->unique();
-            $table->string('email', 30)->unique();
+            $table->string('email', 50)->unique();
             $table->timestamp('born_date');
             $table->timestamps();
             $table->foreign('client_id')->references('id')->on('clients');
