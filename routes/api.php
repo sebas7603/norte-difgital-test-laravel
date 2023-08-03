@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Http\Request;
@@ -22,6 +23,11 @@ Route::controller(SupplierController::class)->prefix('suppliers')->name('supplie
 });
 
 Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{id}', 'show')->name('show');
+});
+
+Route::controller(BranchController::class)->prefix('branches')->name('branches.')->group(function() {
     Route::get('/', 'index')->name('index');
     Route::get('/{id}', 'show')->name('show');
 });
