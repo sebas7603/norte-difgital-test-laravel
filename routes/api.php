@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(SupplierController::class)->prefix('suppliers')->name('suppliers.')->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{id}', 'show')->name('show');
+});
+
+Route::controller(ProductController::class)->prefix('products')->name('products.')->group(function() {
     Route::get('/', 'index')->name('index');
     Route::get('/{id}', 'show')->name('show');
 });

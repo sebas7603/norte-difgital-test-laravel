@@ -24,7 +24,7 @@ class SupplierController extends Controller
     public function show(Request $request, $id): JsonResponse
     {
         $supplier = Supplier::find($id);
-        if (!$supplier) return response()->json([ 'message' => 'Supplier with id ' . $id . ' does not exist.' ], 404);
+        if (!$supplier) return response()->json([ 'message' => 'Supplier ' . $id . ' does not exist.' ], 404);
 
         return response()->json([
             'data' => $supplier->load([
