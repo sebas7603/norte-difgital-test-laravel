@@ -18,6 +18,12 @@ class Sale extends Model
         'total',
     ];
 
+    protected $hidden = [
+        'salesman_id',
+        'client_id',
+        'branch_id',
+    ];
+
     /**
      * Eloquent Relationships
      */

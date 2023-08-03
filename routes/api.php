@@ -3,6 +3,7 @@
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SalesmanController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Http\Request;
@@ -40,6 +41,11 @@ Route::controller(SalesmanController::class)->prefix('salesmen')->name('salesmen
 });
 
 Route::controller(ClientController::class)->prefix('clients')->name('clients.')->group(function() {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{id}', 'show')->name('show');
+});
+
+Route::controller(SaleController::class)->prefix('sales')->name('sales.')->group(function() {
     Route::get('/', 'index')->name('index');
     Route::get('/{id}', 'show')->name('show');
 });
