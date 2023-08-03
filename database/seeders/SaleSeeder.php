@@ -9,6 +9,8 @@ use App\Models\Sale;
 use App\Models\Salesman;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
+use Faker\Factory;
 
 class SaleSeeder extends Seeder
 {
@@ -17,6 +19,7 @@ class SaleSeeder extends Seeder
      */
     public function run(): void
     {
+        $faker = Factory::create();
         $clients = Client::all();
         foreach ($clients as $client) {
             $sales = random_int(1, 3);
@@ -42,7 +45,10 @@ class SaleSeeder extends Seeder
                     $total += $subtotal;
                 }
 
+                $saleDate = Carbon::parse($faker->dateTimeBetween('-1 year', 'now', 'America/Bogota'))->format('Y-m-d H:i:s');
                 $sale->total = $total;
+                $sale->created_at = $saleDate;
+                $sale->updated_at = $saleDate;
                 $sale->save();
             }
         }
