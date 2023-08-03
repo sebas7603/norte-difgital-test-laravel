@@ -16,6 +16,10 @@ class Product extends Model
         'supplier_id',
     ];
 
+    protected $hidden = [
+        'supplier_id'
+    ];
+
     /**
      * Eloquent Relationships
      */
