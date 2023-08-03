@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('country', 2)->unique();
-            $table->string('money_code', 3)->unique();
-            $table->string('money_symbol', 1)->nullable();
+            $table->string('money_code', 3);
+            $table->string('money_symbol', 2)->nullable();
             $table->timestamps();
         });
     }
