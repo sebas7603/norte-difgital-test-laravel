@@ -30,7 +30,7 @@ class Client extends Model
         return $this->hasOne(Salesman::class);
     }
 
-    public function sales() : HasMany
+    public function purchases() : HasMany
     {
         return $this->hasMany(Sale::class);
     }
