@@ -17,6 +17,10 @@ class Salesman extends Model
         'born_date',
     ];
 
+    protected $hidden = [
+        'client_id',
+    ];
+
     /**
      * Eloquent Relationships
      */
