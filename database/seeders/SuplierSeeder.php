@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Supplier;
+use App\Models\Product;
 
 class SuplierSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class SuplierSeeder extends Seeder
     {
         Supplier::factory()
             ->count(100)
-            // TODO: Add products
+            ->has(Product::factory()->count(10))
             ->create();
     }
 }
