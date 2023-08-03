@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
             $table->string('rut')->unique();
-            $table->string('name', 20);
+            $table->string('name', 40);
             $table->string('address_street', 40);
             $table->integer('address_number');
-            $table->string('address_commune', 20);
+            $table->string('address_commune', 40);
             $table->string('address_city', 30);
-            $table->string('phone', 10);
+            $table->string('phone', 20);
             $table->string('webpage', 50);
             $table->timestamps();
         });
