@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SuplierSeeder::class,
             BranchSeeder::class,
+            BranchProductSeeder::class,
         ]);
     }
 }
