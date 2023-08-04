@@ -43,12 +43,19 @@ class StoreSaleRequest extends FormRequest
                 'distinct',
                 'exists:App\Models\Product,id',
                 function (string $attribute, mixed $value, Closure $fail) {
-                    $productExists = DB::table('branch_product')
+                    // Validate if the product is available and has enough stock in the branch passed in the request
+                    $product = DB::table('branch_product')
                         ->where('product_id', '=', $value)
                         ->where('branch_id', '=', $this->branch_id)
                         ->first();
-                    if (!$productExists) {
-                        $fail('The selected :attribute is not available for branch ' . $this->branch_id . '.');
+                    if (!$product) {
+                        $fail('The selected product[:index] is not available for branch ' . $this->branch_id . '.');
+                    } else {
+                        if ($product->stock == 0) {
+                            $fail('The product[:index] is out of stock in branch ' . $this->branch_id . '.');
+                        } elseif ($this->products[explode(".", $attribute)[1]]['quantity'] > $product->stock) {
+                            $fail('Not enough stock for product[:index] in branch ' . $this->branch_id . '. Max stock: ' . $product->stock);
+                        }
                     }
                 },
             ],
