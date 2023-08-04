@@ -71,7 +71,7 @@ class SaleController extends Controller
                     'client',
                     'products',
                 ])
-            ], 200);
+            ], 201);
         } catch (\Throwable $th) {
             DB::rollback();
             return response()->json([
