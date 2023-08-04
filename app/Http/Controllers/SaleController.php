@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Sale\StoreSaleRequest;
 use App\Models\Sale;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class SaleController extends Controller
     /**
      * Store a new Sale
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoreSaleRequest $request): JsonResponse
     {
         $total = 0;
         try {
