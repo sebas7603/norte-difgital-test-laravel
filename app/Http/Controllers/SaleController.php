@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sale;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class SaleController extends Controller
 {
@@ -32,6 +33,54 @@ class SaleController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate($itemsPerPage);
         return response()->json($sales, 200);
+    }
+
+    /**
+     * Store a new Sale
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $total = 0;
+        try {
+            DB::beginTransaction();
+            $sale = Sale::create($request->all());
+
+            foreach ($request->products as $product) {
+                $price = $sale->branch->products()->where('product_id', $product['id'])->first()->pivot->price;
+                $sale->products()->attach($product['id'], [
+                    'price' => $price,
+                    'quantity' => $product['quantity'],
+                    'subtotal' => $product['quantity'] * $price,
+                ]);
+                $total += ($product['quantity'] * $price);
+            }
+
+            $sale->total = $total;
+            $sale->save();
+            DB::commit();
+            return response()->json([
+                'data' => $sale->load([
+                    'branch',
+                    'salesman',
+                    'salesman.client',
+                    'client',
+                    'products',
+                ])
+            ], 200);
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Ups! There was a server error.',
+                'error' => [
+                    'class' => get_class($th),
+                    'message' => $th->getMessage(),
+                    'code' => $th->getCode(),
+                    'file' => $th->getFile(),
+                    'line' => $th->getLine(),
+                    'trace' => $th->getTrace()
+                ]
+            ], 500);
+        }
     }
 
     /**

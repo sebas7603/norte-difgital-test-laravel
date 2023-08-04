@@ -47,5 +47,6 @@ Route::controller(ClientController::class)->prefix('clients')->name('clients.')-
 
 Route::controller(SaleController::class)->prefix('sales')->name('sales.')->group(function() {
     Route::get('/', 'index')->name('index');
+    Route::post('/', 'store')->name('store');
     Route::get('/{id}', 'show')->name('show');
 });
