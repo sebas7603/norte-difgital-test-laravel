@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\IndexProductRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class ProductController extends Controller
     /**
      * List all products
      */
-    public function index(Request $request): JsonResponse
+    public function index(IndexProductRequest $request): JsonResponse
     {
         try {
             $branchId = $request->query('branch', null);
