@@ -47,13 +47,15 @@ class SaleController extends Controller
             $sale = Sale::create($request->all());
 
             foreach ($request->products as $product) {
-                $price = $sale->branch->products()->where('product_id', $product['id'])->first()->pivot->price;
+                $productModel = $sale->branch->products()->where('product_id', $product['id'])->first();
                 $sale->products()->attach($product['id'], [
-                    'price' => $price,
+                    'price' => $productModel->pivot->price,
                     'quantity' => $product['quantity'],
-                    'subtotal' => $product['quantity'] * $price,
+                    'subtotal' => $product['quantity'] * $productModel->pivot->price,
                 ]);
-                $total += ($product['quantity'] * $price);
+                $total += ($product['quantity'] * $productModel->pivot->price);
+                $productModel->pivot->stock -= $product['quantity'];
+                $productModel->pivot->save();
             }
 
             $sale->total = $total;
