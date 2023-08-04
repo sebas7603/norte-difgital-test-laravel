@@ -2,29 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Sale\IndexSaleRequest;
 use App\Http\Requests\Sale\StoreSaleRequest;
 use App\Models\Sale;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class SaleController extends Controller
 {
     /**
      * List all sales
      */
-    public function index(Request $request): JsonResponse
+    public function index(IndexSaleRequest $request): JsonResponse
     {
-        $fromDate = $request->query('from', null);
-        $toDate = $request->query('to', null);
+        $startDate = $request->query('start_date', null);
+        $endDate = $request->query('end_date', null);
         $itemsPerPage = $request->query('items', 10);
         $sales = Sale::withCount('products')
-            ->when($fromDate, function (Builder $query, string $fromDate) {
-                $query->where('created_at', '>=', $fromDate);
+            ->when($startDate, function (Builder $query, string $startDate) {
+                $query->where('created_at', '>=', Carbon::parse($startDate)->startOfDay());
             })
-            ->when($toDate, function (Builder $query, string $toDate) {
-                $query->where('created_at', '<=', $toDate);
+            ->when($endDate, function (Builder $query, string $endDate) {
+                $query->where('created_at', '<=', Carbon::parse($endDate)->endOfDay());
             })
             ->withCount('products')
             ->with('branch')
