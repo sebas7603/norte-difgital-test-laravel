@@ -63,10 +63,10 @@ The application should be accessible at `http://localhost:8000` in your web brow
 
 ## Documentation
 
-For more detailed information on how the project works, you can refer to the [Project Documentation](https://documenter.getpostman.com/view/12519140/2s9XxyQYuS){:target="_blank"}. The documentation contains detailed explanations of the project's architecture, endpoints, and other relevant information.
+For more detailed information on how the project works, you can refer to the <a href="https://documenter.getpostman.com/view/12519140/2s9XxyQYuS" target="_blank" rel="noopener">Project Documentation</a>. The documentation contains detailed explanations of the project's architecture, endpoints, and other relevant information.
 
 ## Contact
 
-If you have any questions or need further assistance, you can contact me via email at [sebastianutpae@gmail.com](mailto:sebastianutpae@gmail.com){:target="_blank"}.
+If you have any questions or need further assistance, you can contact me via email at <a href="mailto:sebastianutpae@gmail.com" target="_blank" rel="noopener">sebastianutpae@gmail.com</a>.
 
 Thank you for reviewing my test project!
