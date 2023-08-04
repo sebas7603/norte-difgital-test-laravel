@@ -2,7 +2,7 @@
 
 This is a Laravel project created as a test for the job application at "Norte Digital". The project is a Sales Management System. Simulating a company that has branches across LATAM and needs to keep track of its suppliers, sales representatives, customers, products, and sales.
 
-![Database Model](/Modelo-relacional-de-BBDD-Norte-Digital.jpg)
+![Database Model](public/Modelo-relacional-de-BBDD-Norte-Digital.jpg)
 
 ## Getting Started
 
@@ -63,10 +63,10 @@ The application should be accessible at `http://localhost:8000` in your web brow
 
 ## Documentation
 
-For more detailed information on how the project works, you can refer to the [Project Documentation](https://documenter.getpostman.com/view/12519140/2s9XxyQYuS). The documentation contains detailed explanations of the project's architecture, endpoints, and other relevant information.
+For more detailed information on how the project works, you can refer to the [Project Documentation](https://documenter.getpostman.com/view/12519140/2s9XxyQYuS){:target="_blank"}. The documentation contains detailed explanations of the project's architecture, endpoints, and other relevant information.
 
 ## Contact
 
-If you have any questions or need further assistance, you can contact me via email at [sebastianutpae@gmail.com](mailto:sebastianutpae@gmail.com).
+If you have any questions or need further assistance, you can contact me via email at [sebastianutpae@gmail.com](mailto:sebastianutpae@gmail.com){:target="_blank"}.
 
 Thank you for reviewing my test project!
